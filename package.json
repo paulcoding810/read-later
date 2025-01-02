@@ -1,7 +1,7 @@
 {
   "name": "read-later",
   "displayName": "Read Later",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "An extension to help you manage your browser tabs effortlessly. Mark tabs to save and read them later!",
   "license": "MIT",
   "repository": {

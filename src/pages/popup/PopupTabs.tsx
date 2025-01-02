@@ -61,17 +61,18 @@ export default function PopupTabs(): JSX.Element {
       });
   }, []);
 
-  const removeTab = async (pos: number) => {
+  const removeTab = async (tab: Tab) => {
     const temp = [...tabs];
-    temp.splice(pos, 1);
+    const index = tabs.indexOf(tab);
+    temp.splice(index, 1);
     setTabs(temp);
   };
 
-  const openAndRemoveTab = (event: MouseEvent, index: number) => {
-    createTab(tabs[index].url);
+  const openAndRemoveTab = (event: MouseEvent, tab: Tab) => {
+    createTab(tab.url);
 
     if (event.altKey || event.metaKey) {
-      removeTab(index);
+      removeTab(tab);
     }
   };
 
@@ -147,14 +148,14 @@ export default function PopupTabs(): JSX.Element {
         autoFocus
       />
       <div className="flex flex-col mt-4">
-        {transitions((style, item, t, index) => (
+        {transitions((style, item) => (
           <animated.div style={style} key={item.url}>
             <TabRow
               key={item.url}
               data={item}
-              onClick={(e) => openAndRemoveTab(e, index)}
+              onClick={(e) => openAndRemoveTab(e, item)}
               onRemove={() => {
-                removeTab(index);
+                removeTab(item);
               }}
             />
           </animated.div>
